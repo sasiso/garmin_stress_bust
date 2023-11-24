@@ -20,17 +20,32 @@ class stressbustView extends WatchUi.WatchFace {
     function onShow() as Void {
     }
 
-    // Update the view
-    function onUpdate(dc as Dc) as Void {
-        // Get and show the current time
-        var clockTime = System.getClockTime();
-        var timeString = Lang.format("$1$:$2$", [clockTime.hour, clockTime.min.format("%02d")]);
-        var view = View.findDrawableById("TimeLabel") as Text;
-        view.setText(timeString);
+function onUpdate(dc as Dc) as Void {
+    // Get and show the current time
+    var clockTime = System.getClockTime();
+    var timeString = Lang.format("$1$:$2$", [clockTime.hour, clockTime.min.format("%02d")]);
 
-        // Call the parent onUpdate function to redraw the layout
-        View.onUpdate(dc);
-    }
+    // Get the Text view with the ID "TimeLabel"
+    var timeView = View.findDrawableById("TimeLabel") as Text;
+    
+    
+    
+    // Set the text to the formatted time
+    timeView.setText(timeString);
+
+    // Get the Text view with the ID "StressLabel"
+    var stressView = View.findDrawableById("StressLabel") as Text;
+    
+
+    // Set the stress number (replace 42 with the actual stress value)
+    stressView.setText(": " + 42);
+
+    // Call the parent onUpdate function to redraw the layout
+    View.onUpdate(dc);
+}
+
+
+
 
     // Called when this View is removed from the screen. Save the
     // state of this View here. This includes freeing resources from
